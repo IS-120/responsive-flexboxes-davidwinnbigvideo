@@ -69,10 +69,8 @@ describe("\nGeneral HTML structure\n-----------------------", () => {
           `${name} index.html is missing <meta> description tag`
         ).not.toBeNull();
         expect(
-          doc.querySelector(
-            "link[rel='shortcut icon']",
-            `${name} index.html is missing link to favicon`
-          )
+          doc.querySelector("link[rel='shortcut icon']"),
+          `${name} index.html is missing link to favicon`
         ).not.toBeNull();
       }
     );
@@ -98,12 +96,13 @@ describe("\nGeneral HTML structure\n-----------------------", () => {
         ).toBe(true);
 
         let mainFound = false;
+        const lastStylesheet = stylesheets[stylesheets.length - 1];
         if (name === "main") {
-          if (stylesheets[2] && stylesheets[2].href === "styles/main.css") {
+          if (lastStylesheet && lastStylesheet.href === "styles/main.css") {
             mainFound = true;
           }
         } else {
-          if (stylesheets[2] && stylesheets[2].href === "../styles/main.css") {
+          if (lastStylesheet && lastStylesheet.href === "../styles/main.css") {
             mainFound = true;
           }
         }
